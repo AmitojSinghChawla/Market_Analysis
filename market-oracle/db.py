@@ -18,28 +18,28 @@ def create_tables():
 
     cursor.execute("""
          CREATE TABLE IF NOT EXISTS prices(
-         id  SERIAL PRIMARY KEY,
-         ticker VARCHAR NOT NULL,
-         date DATE NOT NULL,
-         open NUMERIC(18,6),
-         high NUMERIC(18,6),
-         low NUMERIC(18,6),
-         close NUMERIC(18,6),
-         volume NUMERIC(18,6),
-         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         id             SERIAL PRIMARY KEY,
+         ticker         VARCHAR NOT NULL,
+         date           DATE NOT NULL,
+         open           NUMERIC(18,6),
+         high           NUMERIC(18,6),
+         low            NUMERIC(18,6),
+         close          NUMERIC(18,6),
+         volume         NUMERIC(18,6),
+         created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
          UNIQUE(ticker, date)
          );
     """)
 
     cursor.execute("""
                    CREATE TABLE IF NOT EXISTS news (
-                   id SERIAL PRIMARY KEY,
-                   ticker VARCHAR NOT NULL,
-                   published TIMESTAMP NOT NULL,
-                   title TEXT NOT NULL,
-                   source VARCHAR,
-                   url TEXT,
-                   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                   id               SERIAL PRIMARY KEY,
+                   ticker           VARCHAR NOT NULL,
+                   published        TIMESTAMP NOT NULL,
+                   title            TEXT NOT NULL,
+                   source           VARCHAR,
+                   url              TEXT,
+                   created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                    UNIQUE(ticker, title)
                    );
                    """)
