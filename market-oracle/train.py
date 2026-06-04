@@ -176,7 +176,7 @@ def train_model(train_df, test_df):
     print("Run logged successfully")
 
     import joblib
-    joblib.dump(model, "model.pkl")
+    joblib.dump(model, "models/model.pkl")
 
 
 
