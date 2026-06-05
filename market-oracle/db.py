@@ -4,17 +4,17 @@ from config import DB_CONFIG
 
 
 def get_connected():
-    """ Connect to the PostgreSQL database server """
+    """Connect to the PostgreSQL database server"""
 
     return psycopg2.connect(**DB_CONFIG)
 
 
 def create_tables():
-    """ Create the tables in the database """
+    """Create the tables in the database"""
     conn = get_connected()
     cursor = conn.cursor()
 
-    #Creating Prices Table
+    # Creating Prices Table
 
     cursor.execute("""
          CREATE TABLE IF NOT EXISTS prices(
@@ -50,8 +50,7 @@ def create_tables():
 
     cursor.execute("""
                 CREATE INDEX IF NOT EXISTS idx_news_ticker_published
-                ON news(ticker, published) """
-                   )
+                ON news(ticker, published) """)
 
     conn.commit()
     cursor.close()
@@ -59,14 +58,12 @@ def create_tables():
     print(f"TABLES CREATED")
 
 
-def get_latest_date(table,ticker):
+def get_latest_date(table, ticker):
     conn = get_connected()
     cursor = conn.cursor()
 
     date_col = "date" if table == "prices" else "published"
-    cursor.execute(
-        f"SELECT MAX({date_col}) FROM {table} WHERE ticker = %s",(ticker,)
-    )
+    cursor.execute(f"SELECT MAX({date_col}) FROM {table} WHERE ticker = %s", (ticker,))
 
     result = cursor.fetchone()
 
