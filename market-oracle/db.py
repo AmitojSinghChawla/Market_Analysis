@@ -72,5 +72,47 @@ def get_latest_date(table, ticker):
     return result[0]
 
 
+def save_features(df):
+    conn = get_connected()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS features (
+            id              SERIAL PRIMARY KEY,
+            ticker          VARCHAR NOT NULL,
+            date            DATE NOT NULL,
+            daily_return    NUMERIC,
+            ma_7            NUMERIC,
+            ma_21           NUMERIC,
+            ma_ratio        NUMERIC,
+            rsi             NUMERIC,
+            volatility_7    NUMERIC,
+            volume_change   NUMERIC,
+            sentiment_score NUMERIC,
+            macd            NUMERIC,
+            stochastic      NUMERIC,
+            target          INTEGER,
+            created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE(ticker, date)
+        );
+    """)
+
+    cols = ["ticker", "date", "daily_return", "ma_7", "ma_21", "ma_ratio",
+            "rsi", "volatility_7", "volume_change", "sentiment_score",
+            "macd", "stochastic", "target"]
+
+    rows = [tuple(row) for row in df[cols].itertuples(index=False)]
+    execute_values(cursor, f"""
+        INSERT INTO features ({", ".join(cols)})
+        VALUES %s
+        ON CONFLICT (ticker, date) DO NOTHING
+    """, rows)
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+    print(f"Saved {len(rows)} feature rows to DB")
+
+
 if __name__ == "__main__":
     create_tables()

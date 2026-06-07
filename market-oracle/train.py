@@ -133,6 +133,9 @@ def create_target_and_split(features):
     ]
     features_clean = features.dropna(subset=feature_cols + ["target"])
 
+    from db import save_features
+    save_features(features_clean)
+
     data = features_clean.sort_values(by="date")
 
     dates = data["date"].unique()
@@ -143,7 +146,7 @@ def create_target_and_split(features):
 
     train_df = data[data["date"] <= cutoff_date]
     test_df = data[data["date"] > cutoff_date]
-
+!
     return train_df, test_df
 
 
