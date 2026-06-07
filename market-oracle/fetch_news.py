@@ -22,7 +22,7 @@ def fetch_news(ticker, table, cursor):
 
     params = {
         "q": NEWS_SEARCH_TERMS[ticker],
-        "from": start_date,
+        "from": date,
         "language": "en",
         "sortBy": "publishedAt",
         "apiKey": NEWS_API_KEY,
