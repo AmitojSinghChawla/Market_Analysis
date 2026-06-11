@@ -4,9 +4,12 @@ from config import DB_CONFIG
 
 
 def get_connected():
-    """Connect to the PostgreSQL database server"""
+    """Connect to the PostgreSQL database server on cloud using the neon database service
+    earlier we were using local postgresql database."""
 
-    return psycopg2.connect(**DB_CONFIG)
+    config = DB_CONFIG.copy()
+    config["sslmode"] = "require"
+    return psycopg2.connect(**config)
 
 
 def create_tables():
