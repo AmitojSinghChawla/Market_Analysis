@@ -1,0 +1,22 @@
+artifact_path: file:C:/Users/amito/PycharmProjects/PythonProject/market-oracle/mlruns/1/models/m-0b8e4343c10d4ab184f5a1aa32f39333/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.12.10
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: ubj
+    xgb_version: 3.2.0
+mlflow_version: 3.13.0
+model_id: m-0b8e4343c10d4ab184f5a1aa32f39333
+model_size_bytes: 847709
+model_uuid: m-0b8e4343c10d4ab184f5a1aa32f39333
+prompts: null
+run_id: 7a8956e223fd4e0797830b4701a18160
+utc_time_created: '2026-06-11 09:37:18.237303'

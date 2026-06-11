@@ -146,7 +146,6 @@ def create_target_and_split(features):
 
     train_df = data[data["date"] <= cutoff_date]
     test_df = data[data["date"] > cutoff_date]
-!
     return train_df, test_df
 
 
@@ -175,7 +174,6 @@ def train_model(train_df, test_df):
     neg = (y_train == 0).sum()
     pos = (y_train == 1).sum()
     scale = neg / pos
-    print(scale)
 
     model = XGBClassifier(
         n_estimators=300,  # 100 trees
@@ -205,7 +203,7 @@ def train_model(train_df, test_df):
         mlflow.log_metric("precision", precision_score(y_test, y_pred))
         mlflow.log_metric("recall", recall_score(y_test, y_pred))
         mlflow.log_metric("f1", f1_score(y_test, y_pred))
-        mlflow.xgboost.log_model(model, "model_1")
+        mlflow.xgboost.log_model(model, name="model_1")
 
     print("Run logged successfully")
 
