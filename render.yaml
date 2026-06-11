@@ -3,6 +3,7 @@ services:
     name: marketpulse
     runtime: docker
     plan: free
+    dockerfilePath: market-oracle/Dockerfile
     envVars:
       - key: DB_NAME
         value: neondb
