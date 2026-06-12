@@ -4,14 +4,3 @@ services:
     runtime: docker
     plan: free
     dockerfilePath: market-oracle/Dockerfile
-    envVars:
-      - key: DB_NAME
-        value: neondb
-      - key: DB_USER
-        value: neondb_owner
-      - key: DB_PASSWORD
-        value: npg_ZPXJS7Y6CBsf
-      - key: DB_HOST
-        value: ep-hidden-dawn-aqv55xjw-pooler.c-8.us-east-1.aws.neon.tech
-      - key: DB_PORT
-        value: "5432"
