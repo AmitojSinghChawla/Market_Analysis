@@ -209,7 +209,7 @@ def train_model(train_df, test_df):
 
     import joblib
 
-    joblib.dump(model, "models/model.pkl")
+    joblib.dump(model, "market-oracle/models/model.pkl")
 
 
 if __name__ == "__main__":
