@@ -1,1 +1,47 @@
 
+
+on:
+  schedule:
+    - cron: 0 23 * * 5
+  workflow_dispatch:
+
+jobs:
+  automation-job:
+    runs-on: ubuntu-latest
+    env:
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r market-oracle/requirements-train.txt
+
+      - name: Fetch prices
+        run: python market-oracle/fetch_prices.py
+
+      - name: Fetch news
+        run: python market-oracle/fetch_news.py
+
+      - name: Train model
+        run: python market-oracle/train.py
+
+      - name: Commit updated model
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add market-oracle/models/model.pkl
+          git commit -m "Auto-retrain model" || echo "No changes"
+          git push
+
