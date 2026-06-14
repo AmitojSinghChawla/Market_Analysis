@@ -8,6 +8,8 @@ on:
 jobs:
   automation-job:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
     env:
       DB_NAME: ${{ secrets.DB_NAME }}
       DB_USER: ${{ secrets.DB_USER }}
