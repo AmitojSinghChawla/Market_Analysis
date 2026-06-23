@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def load_data():
 
     from db import get_connected
@@ -151,6 +150,8 @@ def create_target_and_split(features):
 
 def train_model(train_df, test_df):
     from xgboost import XGBClassifier
+    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+    import mlflow
 
     feature_cols = [
         "daily_return",
@@ -187,8 +188,10 @@ def train_model(train_df, test_df):
 
     y_pred = model.predict(X_test)
 
-    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-    import mlflow
+    print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+    print(f"F1: {f1_score(y_test, y_pred):.4f}")
+
+
 
     mlflow.set_tracking_uri("sqlite:///mlflow.db")
 
