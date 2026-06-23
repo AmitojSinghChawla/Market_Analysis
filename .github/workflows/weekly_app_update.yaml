@@ -17,6 +17,7 @@ jobs:
       DB_HOST: ${{ secrets.DB_HOST }}
       DB_PORT: ${{ secrets.DB_PORT }}
       NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+      RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
 
     steps:
       - name: Checkout code
@@ -47,3 +48,5 @@ jobs:
           git commit -m "Auto-retrain model" || echo "No changes"
           git push
 
+      - name: Trigger Render Deployment
+        run: curl -X POST "$RENDER_DEPLOY_HOOK"
