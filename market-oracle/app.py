@@ -55,6 +55,7 @@ def get_latest_features(ticker: str):
 
 
 
+
 # ── Prediction endpoint ────────────────────────────────────────
 @app.get("/predict")
 def predict(ticker: str):
