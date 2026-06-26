@@ -1,7 +1,9 @@
 import psycopg2
 from psycopg2.extras import execute_values
 from config import DB_CONFIG
+from dotenv import load_dotenv
 
+load_dotenv(verbose=True)
 
 def get_connected():
     """Connect to the PostgreSQL database server on cloud using the neon database service
