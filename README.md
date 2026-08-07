@@ -53,24 +53,7 @@ flowchart TD
     style K fill:#f59e0b,color:#000
 ```
 
-## Request Flow
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant FastAPI
-    participant Model as model.pkl
-    participant DB as PostgreSQL (Neon)
-
-    Client->>FastAPI: GET /predict?ticker=AAPL
-    FastAPI->>DB: Fetch latest price + news data
-    FastAPI->>FastAPI: Engineer features (indicators + sentiment)
-    FastAPI->>Model: Predict direction
-    Model-->>FastAPI: up / down + confidence
-    FastAPI-->>Client: JSON response
-```
-
----
 
 ## Features
 
