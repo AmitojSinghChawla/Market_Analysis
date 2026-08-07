@@ -1,6 +1,6 @@
 # MarketPulse
 
-An end-to-end MLOps pipeline that predicts whether a stock or crypto ticker will close **up or down the next trading day**. It ingests daily price data and financial news, engineers technical and sentiment features, trains an XGBoost classifier, and serves predictions through a FastAPI REST API. The pipeline retrains itself automatically every week via GitHub Actions and redeploys to both AWS EC2 and Render.
+An end-to-end ML pipeline that predicts whether a stock or crypto ticker will close **up or down the next trading day**. It ingests daily price data and financial news, engineers technical and sentiment features, trains an XGBoost classifier, and serves predictions through a FastAPI REST API. The pipeline retrains itself automatically every week via GitHub Actions and redeploys to both AWS EC2 and Render.
 
 > **Live API:**
 > [AWS EC2](http://16.192.127.144:8000/docs) | [Render](https://market-oracle.onrender.com/docs)
