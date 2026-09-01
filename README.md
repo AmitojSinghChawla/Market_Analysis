@@ -4,6 +4,7 @@ An end-to-end ML pipeline that predicts whether a stock or crypto ticker will cl
 
 > **Live API:**
 > [AWS EC2](http://16.192.127.144:8000/docs) | [Render](https://market-oracle.onrender.com/docs)
+>ec2 temporarily stopped for dev purposes
 
 ---
 
